@@ -2,6 +2,10 @@
 
 Draw Yu-Gi-Oh! Card on GitHub issue.
 
+![example](./example.gif)
+
+It takes about 10 seconds to draw.
+
 ## Inputs
 
 ### `github-token`
