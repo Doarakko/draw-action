@@ -1,0 +1,10 @@
+name: "Draw Yu-Gi-Oh! Card"
+description: "Draw Yu-Gi-Oh! Card on GitHub issue."
+inputs:
+  github-token:
+    description: The GitHub token used to create an authenticated client
+    default: ${{ github.token }}
+    required: true
+runs:
+  using: "node12"
+  main: "index.js"
