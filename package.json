@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint .",
+    "prepare": "ncc build index.js -o dist --source-map --license licenses.txt"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,9 @@
     "@actions/github": "^4.0.0",
     "@octokit/core": "^3.2.5",
     "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.27.0",
+    "eslint": "^7.20.0"
   }
 }
