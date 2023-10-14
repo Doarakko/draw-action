@@ -36,3 +36,7 @@ jobs:
 ## Demo
 
 Please comment "draw" to [this issue](https://github.com/Doarakko/draw-action/issues/1)!
+
+## Credits
+
+- [Yu-Gi-Oh! API by YGOPRODeck](https://ygoprodeck.com/api-guide/)
