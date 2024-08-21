@@ -8,7 +8,7 @@ async function run() {
     const githubToken = getInput("github-token");
     const octokit = new Octokit({ auth: githubToken });
 
-    fetch("https://db.ygoprodeck.com/api/v7/randomcard.php")
+    fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?num=1&offset=0&sort=random&cachebust")
       .then((response) => {
         if(!response.ok){
           console.error('response.ok:', response.ok);

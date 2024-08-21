@@ -34777,7 +34777,7 @@ async function run() {
     const githubToken = (0,_actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput)("github-token");
     const octokit = new _octokit_core__WEBPACK_IMPORTED_MODULE_3__.Octokit({ auth: githubToken });
 
-    node_fetch__WEBPACK_IMPORTED_MODULE_0___default()("https://db.ygoprodeck.com/api/v7/randomcard.php")
+    node_fetch__WEBPACK_IMPORTED_MODULE_0___default()("https://db.ygoprodeck.com/api/v7/cardinfo.php?num=1&offset=0&sort=random&cachebust")
       .then((response) => {
         if(!response.ok){
           console.error('response.ok:', response.ok);
