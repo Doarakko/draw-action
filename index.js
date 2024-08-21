@@ -20,6 +20,9 @@ async function run() {
       })
       .then((data) => {
         const cardName = data.name;
+        if (!(('card_images' in data) && Array.isArray(data.card_images) && data.card_images.length > 0)) {
+          throw new Error("Failed to get card images");
+        }
         const imageUrl = data.card_images[0].image_url;
 
         octokit.request(
