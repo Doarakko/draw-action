@@ -8,7 +8,7 @@ async function run() {
     const githubToken = getInput("github-token");
     const octokit = new Octokit({ auth: githubToken });
 
-    fetch("https://db.ygoprodeck.com/api/v7/randomcard.php")
+    fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?num=1&offset=0&sort=random&cachebust")
       .then((response) => {
         if(!response.ok){
           console.error('response.ok:', response.ok);
@@ -19,11 +19,15 @@ async function run() {
         return response.json();
       })
       .then((data) => {
-        const cardName = data.name;
-        if (!(('card_images' in data) && Array.isArray(data.card_images) && data.card_images.length > 0)) {
+        if (!(Array.isArray(data.card_images) && data.length > 0)) {
+          throw new Error("Failed to get card");
+        }
+        const card = data[0];
+        const cardName = card.name;
+        if (!(('card_images' in card) && Array.isArray(card.card_images) && card.card_images.length > 0)) {
           throw new Error("Failed to get card images");
         }
-        const imageUrl = data.card_images[0].image_url;
+        const imageUrl = card.card_images[0].image_url;
 
         octokit.request(
           "POST /repos/{owner}/{repo}/issues/{issue_number}/comments",
