@@ -10,6 +10,12 @@ async function run() {
 
     fetch("https://db.ygoprodeck.com/api/v7/randomcard.php")
       .then((response) => {
+        if(!response.ok){
+          console.error('response.ok:', response.ok);
+          console.error('esponse.status:', response.status);
+          console.error('esponse.statusText:', response.statusText);
+          throw new Error("Failed to fetch random card");
+        }
         return response.json();
       })
       .then((data) => {
