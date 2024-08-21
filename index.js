@@ -19,10 +19,10 @@ async function run() {
         return response.json();
       })
       .then((data) => {
-        if (!(Array.isArray(data) && data.length > 0)) {
+        if (!(('data' in data) && Array.isArray(data["data"]) && data["data"].length > 0)) {
           throw new Error("Failed to get card");
         }
-        const card = data[0];
+        const card = data["data"][0];
         const cardName = card.name;
         if (!(('card_images' in card) && Array.isArray(card.card_images) && card.card_images.length > 0)) {
           throw new Error("Failed to get card images");
