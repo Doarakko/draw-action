@@ -14,6 +14,9 @@ updates:
     schedule:
       interval: "monthly"
     groups:
+      octokit:
+        patterns:
+          - "@octokit/*"
       development:
         patterns:
           - "eslint*"
