@@ -4,9 +4,9 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4.1.0
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6.2.0
         with:
-          node-version: '16'
+          node-version: lts/*
       - run: npm ci
       - run: npm run lint
