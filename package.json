@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint .",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
     "package": "ncc build index.js -o dist --source-map --license licenses.txt"
   },
   "repository": {
@@ -26,6 +27,6 @@
   },
   "devDependencies": {
     "@vercel/ncc": "^0.38.0",
-    "eslint": "^8.52.0"
+    "@biomejs/biome": "^1.9.4"
   }
 }

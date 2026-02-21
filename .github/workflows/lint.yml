@@ -1,4 +1,4 @@
-name: eslint
+name: lint
 on: push
 jobs:
   lint:
