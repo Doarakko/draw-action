@@ -60567,9 +60567,6 @@ var __webpack_exports__ = {};
 // ESM COMPAT FLAG
 __nccwpck_require__.r(__webpack_exports__);
 
-// EXTERNAL MODULE: ./node_modules/node-fetch/lib/index.js
-var lib = __nccwpck_require__(467);
-var lib_default = /*#__PURE__*/__nccwpck_require__.n(lib);
 // EXTERNAL MODULE: external "os"
 var external_os_ = __nccwpck_require__(2037);
 ;// CONCATENATED MODULE: ./node_modules/@actions/core/lib/utils.js
@@ -63519,6 +63516,9 @@ function getIDToken(aud) {
 var github = __nccwpck_require__(5438);
 // EXTERNAL MODULE: ./node_modules/@octokit/core/dist-node/index.js
 var dist_node = __nccwpck_require__(6762);
+// EXTERNAL MODULE: ./node_modules/node-fetch/lib/index.js
+var lib = __nccwpck_require__(467);
+var lib_default = /*#__PURE__*/__nccwpck_require__.n(lib);
 ;// CONCATENATED MODULE: ./index.js
 
 
@@ -63530,23 +63530,33 @@ async function run() {
     const githubToken = getInput("github-token");
     const octokit = new dist_node.Octokit({ auth: githubToken });
 
-    lib_default()("https://db.ygoprodeck.com/api/v7/cardinfo.php?num=1&offset=0&sort=random&cachebust")
+    lib_default()(
+      "https://db.ygoprodeck.com/api/v7/cardinfo.php?num=1&offset=0&sort=random&cachebust",
+    )
       .then((response) => {
-        if(!response.ok){
-          console.error('response.ok:', response.ok);
-          console.error('esponse.status:', response.status);
-          console.error('esponse.statusText:', response.statusText);
+        if (!response.ok) {
+          console.error("response.ok:", response.ok);
+          console.error("esponse.status:", response.status);
+          console.error("esponse.statusText:", response.statusText);
           throw new Error("Failed to fetch random card");
         }
         return response.json();
       })
       .then((data) => {
-        if (!(('data' in data) && Array.isArray(data["data"]) && data["data"].length > 0)) {
+        if (
+          !("data" in data && Array.isArray(data.data) && data.data.length > 0)
+        ) {
           throw new Error("Failed to get card");
         }
-        const card = data["data"][0];
+        const card = data.data[0];
         const cardName = card.name;
-        if (!(('card_images' in card) && Array.isArray(card.card_images) && card.card_images.length > 0)) {
+        if (
+          !(
+            "card_images" in card &&
+            Array.isArray(card.card_images) &&
+            card.card_images.length > 0
+          )
+        ) {
           throw new Error("Failed to get card images");
         }
         const imageUrl = card.card_images[0].image_url;
@@ -63558,7 +63568,7 @@ async function run() {
             owner: github.context.repo.owner,
             repo: github.context.repo.repo,
             body: `_**Draw "${cardName}" !**_\n\n![${cardName}](${imageUrl})`,
-          }
+          },
         );
       });
   } catch (error) {
