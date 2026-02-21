@@ -19,4 +19,4 @@ updates:
           - "@octokit/*"
       development:
         patterns:
-          - "eslint*"
+          - "@biomejs/*"
