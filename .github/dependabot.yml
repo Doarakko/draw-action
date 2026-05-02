@@ -14,6 +14,9 @@ updates:
     schedule:
       interval: "monthly"
     groups:
+      patch:
+        update-types:
+          - "patch"
       octokit:
         patterns:
           - "@octokit/*"
